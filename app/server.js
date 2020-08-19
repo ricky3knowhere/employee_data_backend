@@ -10,7 +10,9 @@ app.get('/',(req,res) => {
     res.send('server')
 })
 
-app.get('/user/:name',user.by_name)
+app.get('/user_by_name/:name',user.by_name)
+app.get('/user_by_id/:id',user.by_id)
+
 
 app.listen(port,() => {
     console.log(`Example app listening at https://localhost:${port}`)
