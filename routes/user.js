@@ -1,30 +1,5 @@
-const {Sequelize, DataTypes, Op} = require('sequelize')
-
-const sequelize =new Sequelize({
-  dialect : 'mysql',
-  host : 'localhost',
-  port : '3306',
-  username : 'employee_data',
-  password : 'employee_data',
-  database : 'employee_data'
-})
-
-const User = sequelize.define('User',
-  {
-    id : {
-      type : DataTypes.INTEGER,
-      autoIncrement : true,
-      primaryKey : true
-    },
-    name : {
-      type : DataTypes.STRING,
-      allowNull : false
-    },
-  },{
-    tableName : 'user',
-    timestamps : false
-  }
-)
+const {Op} = require('sequelize')
+const User = require('../models/user')
 
 const by_name = (req,res) => {
   User.findOne({
