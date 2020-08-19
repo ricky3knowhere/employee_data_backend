@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User All</title>
+</head>
+<body>
+  <h3>List of User</h3>
+  <a href="/user/new">Create New</a><br><br>
+  {% for user in users %}
+    <li>
+      {{user.name}} | 
+      <a href="/user/{{user.id}}">Detail</a> | 
+      <a href="/user/{{user.id}}/update">Edit</a> |
+      <a href="/user/{{user.id}}/delete">Delete</a>
+    </li>
+  {% endfor %}
+</body>
+</html>
