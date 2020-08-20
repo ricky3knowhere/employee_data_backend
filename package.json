@@ -28,5 +28,8 @@
     "pug": "^3.0.0",
     "sequelize": "^6.3.4",
     "twig": "^1.15.2"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
   }
 }
