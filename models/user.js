@@ -1,9 +1,9 @@
 const {Sequelize, DataTypes} = require('sequelize')
 
 sequelize = new Sequelize({
-  dialect : 'mysql',
-  host : 'localhost',
-  port : '3306',
+  dialect  : 'mysql',
+  host     : 'localhost',
+  port     : '3306',
   username : 'employee_data',
   password : 'employee_data',
   database : 'employee_data'
