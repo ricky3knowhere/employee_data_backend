@@ -1,10 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const app = express()
 const port = 4000
 
 app.set('view engine', 'twig')
 app.use(bodyParser.urlencoded({extended : true}))
+app.use(cors())
 
 const user = require('../routes/user')
 

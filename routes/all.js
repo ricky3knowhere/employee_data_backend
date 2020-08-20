@@ -2,7 +2,11 @@ const User = require('../models/user')
 
 const all = (req,res) => {
   User.findAll().then(
-    (users) => res.render('user_all',{users}),
+    (users) => {
+      // if(req.xhr) {
+      if (req.headers.accept === 'application/json') res.send(users)
+      else res.render('user_all',{users})
+    },
     (err) => res.send(err)
   )
 }
