@@ -1,14 +1,21 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const fileUpload = require('express-fileupload')
 const app = express()
 const port = 4000
 
 app.set('view engine', 'twig')
-app.use(bodyParser.urlencoded({extended : true}))
+app.use(bodyParser.urlencoded({ extended : true }))
+app.use(fileUpload({ createParentPath : true }))
 app.use(cors())
 
-const user = require('../routes/user')
+app.use('/uploads', express.static('uploads'))
+
+const user   = require('../routes/user')
+const upload = require('../routes/upload')
+const postUpload = require('../routes/post_upload')
+
 
 app.get('/',(req,res) => {
     res.send('server')
@@ -22,6 +29,10 @@ app.get('/user/:id/update', user.form_update)
 app.post('/user/:id', user.update_by_id)
 app.get('/user/:id', user.by_id)
 app.get('/user', user.all)
+app.get('/upload', upload)
+app.post('/upload', postUpload)
+
+
 
 app.listen(port,() => {
     console.log(`Example app listening at https://localhost:${port}`)
