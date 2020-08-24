@@ -30,6 +30,7 @@
     "twig": "^1.15.2"
   },
   "devDependencies": {
+    "pm2": "^4.4.1",
     "sequelize-cli": "^6.2.0"
   }
 }
