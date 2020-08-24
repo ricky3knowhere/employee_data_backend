@@ -1,4 +1,5 @@
-const User = require('../models/user')
+const models = require('../models')
+const User = models.user
 
 const all = (req,res) => {
   User.findAll().then(

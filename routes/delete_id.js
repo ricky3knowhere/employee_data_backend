@@ -1,4 +1,6 @@
-const User = require('../models/user')
+const models = require('../models')
+const User = models.user
+
 const {Op} = require('sequelize')
 
 const delete_id = (req,res) => {

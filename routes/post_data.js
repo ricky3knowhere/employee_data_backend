@@ -1,4 +1,5 @@
-const User = require('../models/user')
+const models = require('../models')
+const User = models.user
 
 const post_data = (req,res) => {
   // res.send(req.body)

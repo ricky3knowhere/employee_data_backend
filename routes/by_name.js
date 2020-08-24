@@ -1,5 +1,6 @@
 const {Op} = require('sequelize')
-const User = require('../models/user')
+const models = require('../models')
+const User = models.user
 
 const by_name = (req,res) => {
   User.findOne({
