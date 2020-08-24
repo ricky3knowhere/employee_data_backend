@@ -1,13 +1,10 @@
-const qs = require('qs')
-
 const postUpload = (req,res) => {
   const file = req.files.upload
-  const urlPath = { path : './uploads/' + file.name}
-  const encoded = qs.stringify(urlPath, { encode : false})
+  const urlPath = '/uploads/' + file.name
 
-  file.mv('./' + urlPath.path)
-  req.session.uploadPath = encoded
-  res.redirect('./upload?' + encoded)
+  file.mv('.' + urlPath)
+  req.session.uploadPath = urlPath
+  res.redirect('/upload')
 }
 
 module.exports = postUpload
