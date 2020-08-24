@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
+const session = require('express-session')
 const app = express()
 const port = 4000
 
@@ -16,6 +17,12 @@ const user   = require('../routes/user')
 const upload = require('../routes/upload')
 const postUpload = require('../routes/post_upload')
 
+app.use(session({ 
+    secret : 'x', 
+    resave : false, 
+    saveUninitialized : true,
+    cookie : { secure : 'auto' }
+}))
 
 app.get('/',(req,res) => {
     res.send('server')

@@ -6,6 +6,7 @@ const postUpload = (req,res) => {
   const encoded = qs.stringify(urlPath, { encode : false})
 
   file.mv('./' + urlPath.path)
+  req.session.uploadPath = encoded
   res.redirect('./upload?' + encoded)
 }
 
