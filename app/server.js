@@ -2,7 +2,16 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
+
 const session = require('express-session')
+const sessionStore = require('express-session-sequelize')
+const SessionStore = sessionStore(session.Store);
+
+const db = require('../models')
+const sequelizeSessionStore = new SessionStore({
+    db: db.sequelize,
+});
+
 const app = express()
 const port = 4000
 

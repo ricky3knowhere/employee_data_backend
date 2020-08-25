@@ -9,7 +9,8 @@
   <h3>Create User</h3>
   <form action="/user/new" method="post">
     Username<br>
-    <input name="name" type="text"><br><br>
+    <input name="name" type="text" value="{{ oldValue.name }}"><br>
+    <p style="color: red;">{{ errorMessage.name }}</p>
     <button type="submit">Insert</button>
   </form>
 </body>
