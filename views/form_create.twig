@@ -8,9 +8,15 @@
 <body>
   <h3>Create User</h3>
   <form action="/user/new" method="post">
-    Username<br>
+    Username :
     <input name="name" type="text" value="{{ oldValue.name }}"><br>
     <p style="color: red;">{{ errorMessage.name }}</p>
+     Password :
+    <input name="password" type="password" value="{{ oldValue.password }}"><br><br>
+     Email :
+    <input name="email" type="text" value="{{ oldValue.email }}"><br><br>
+     Date of Birth :
+    <input name="date_of_birth" type="date" value="{{ oldValue.date }}"><br><br>
     <button type="submit">Insert</button>
   </form>
 </body>

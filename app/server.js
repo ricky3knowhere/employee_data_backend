@@ -25,6 +25,7 @@ app.use('/uploads', express.static('uploads'))
 const user   = require('../routes/user')
 const upload = require('../routes/upload')
 const postUpload = require('../routes/post_upload')
+const login = require('../routes/login')
 
 app.use(session({ 
     secret : 'x', 
@@ -48,6 +49,8 @@ app.get('/user', user.all)
 app.get('/upload', upload)
 app.post('/upload', postUpload)
 
+app.get('/login', login.get_login)
+app.post('/login', login.post_login)
 
 
 app.listen(port,() => {

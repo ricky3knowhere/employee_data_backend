@@ -1,6 +1,6 @@
-const form_create = (req,res) => {
-  const errorMessage = req.session.errorMessage
-  const oldValue = req.session.oldValue
+const form_create = async (req,res) => {
+  const errorMessage = await req.session.errorMessage
+  const oldValue = await req.session.oldValue
   const data = {
     errorMessage,
     oldValue

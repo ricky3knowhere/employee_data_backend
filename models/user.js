@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -23,6 +24,18 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       allowNull : false
     },
+    password : {
+      type : DataTypes.STRING,
+      allowNull : true
+    },
+    email : {
+      type : DataTypes.STRING,
+      allowNull : true
+    },
+    date_of_birth : {
+      type : DataTypes.DATEONLY,
+      allowNull : true
+    }
   }, {
     sequelize,
     modelName: 'user',

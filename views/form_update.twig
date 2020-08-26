@@ -6,10 +6,16 @@
   <title>Form Edit User</title>
 </head>
 <body>
-  <h3>Create User</h3>
+  <h3>Edit User</h3>
   <form action="/user/{{ user.id }}" method="post">
     Username<br>
     <input name="name" type="text" value="{{ user.name }}"><br><br>
+    Password :
+    <input name="password" type="password" value="{{ user.password }}"><br><br>
+     Email :
+    <input name="email" type="text" value="{{ user.email }}"><br><br>
+     Date of Birth :
+    <input name="date_of_birth" type="date" value="{{ user.date_of_birth }}"><br><br>
     <button type="submit">Edit</button>
   </form>
 </body>
