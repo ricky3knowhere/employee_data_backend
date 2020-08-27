@@ -28,19 +28,21 @@ const postUpload = require('../routes/post_upload')
 const login = require('../routes/login')
 
 app.use(session({ 
-    secret : 'x', 
+    secret : 'keyboard cat', 
     resave : false, 
     saveUninitialized : true,
-    cookie : { secure : 'auto' }
+    cookie : { secure : 'auto' },
+    store : sequelizeSessionStore
 }))
 
 app.get('/',(req,res) => {
     res.send('server')
 })
 
-// app.get('/user_by_name/:name', user.by_name)
+// const { validationNewUser } = require('./validationNewUser')
+
 app.get('/user/new', user.form_create)
-app.post('/user/new', user.post_data)
+app.post('/user/new', /* validationNewUser, */ user.post_data)
 app.get('/user/:id/delete', user.delete_id)
 app.get('/user/:id/update', user.form_update)
 app.post('/user/:id', user.update_by_id)
@@ -51,6 +53,9 @@ app.post('/upload', postUpload)
 
 app.get('/login', login.get_login)
 app.post('/login', login.post_login)
+
+// const validationErrorHandler = require('/validationErrorHandler')
+// app.use(validationErrorHandler)
 
 
 app.listen(port,() => {

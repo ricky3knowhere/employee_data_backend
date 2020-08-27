@@ -9,15 +9,31 @@
   <h3>Create User</h3>
   <form action="/user/new" method="post">
     Username :
-    <input name="name" type="text" value="{{ oldValue.name }}"><br>
-    <p style="color: red;">{{ errorMessage.name }}</p>
+    <input name="name" type="text" value="{{ data.name.value }}"><br>
+    {% if data.name.error %}
+      <p style="color: red;">{{ data.name.error }}</p>
+    {% endif %}
+
      Password :
-    <input name="password" type="password" value="{{ oldValue.password }}"><br><br>
+    <input name="password" type="password" value="{{ data.password.value }}"><br>
+    {% if data.password.error %}
+      <p style="color: red;">{{ data.password.error }}</p>
+    {% endif %}
+
      Email :
-    <input name="email" type="text" value="{{ oldValue.email }}"><br><br>
+    <input name="email" type="text" value="{{ data.email.value }}"><br>
+    {% if data.email.error %}
+      <p style="color: red;">{{ data.email.error }}</p>
+    {% endif %}
+
      Date of Birth :
-    <input name="date_of_birth" type="date" value="{{ oldValue.date }}"><br><br>
+    <input name="date_of_birth" type="date" value="{{ data.date.value }}"><br>
+    {% if data.date_of_birth.error %}
+      <p style="color: red;">{{ data.date_of_birth.error }}</p>
+    {% endif %}
+
     <button type="submit">Insert</button>
   </form>
+
 </body>
 </html>
