@@ -7,6 +7,8 @@ const session = require('express-session')
 const sessionStore = require('express-session-sequelize')
 const SessionStore = sessionStore(session.Store);
 
+const hbs = require('express-hbs')
+
 const db = require('../models')
 const sequelizeSessionStore = new SessionStore({
     db: db.sequelize,
@@ -15,7 +17,14 @@ const sequelizeSessionStore = new SessionStore({
 const app = express()
 const port = 4000
 
-app.set('view engine', 'twig')
+app.engine('hbs', hbs.express4({
+    partialsDir : __dirname + '/../views/partials',
+    defaultLayout : __dirname + '/../views/layout/default.hbs'
+
+  }));
+
+app.set('view engine', 'hbs')
+
 app.use(bodyParser.urlencoded({ extended : true }))
 app.use(fileUpload({ createParentPath : true }))
 app.use(cors())
@@ -36,7 +45,11 @@ app.use(session({
 }))
 
 app.get('/',(req,res) => {
-    res.send('server')
+    res.render('home')
+})
+
+app.get('/form',(req,res) => {
+    res.render('form')
 })
 
 // const { validationNewUser } = require('./validationNewUser')
@@ -53,6 +66,7 @@ app.post('/upload', postUpload)
 
 app.get('/login', login.get_login)
 app.post('/login', login.post_login)
+
 
 // const validationErrorHandler = require('/validationErrorHandler')
 // app.use(validationErrorHandler)
