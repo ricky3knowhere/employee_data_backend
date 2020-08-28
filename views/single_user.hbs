@@ -1,0 +1,16 @@
+{{!< ./layout/default}}
+
+<{{#contentFor 'body'}}
+
+  <h3>User Success Inserted</h3>
+  <a href="/user">Back to Index</a><br><br>
+
+  Id   : {{ user.id}} <br>
+  Username : {{ user.name}} <br>
+  Password : {{ user.password}} <br>
+  Email : {{ user.email}} <br>
+  Date of Birth : {{ user.date_of_birth}} <br><br>
+
+<a href="/user/{{user.id}}/update">Edit Data</a><br><br>    
+
+{{/contentFor}}

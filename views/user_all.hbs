@@ -1,0 +1,19 @@
+{{!< ./layout/default}}
+
+<{{#contentFor 'body'}}
+
+  <h3 class="mt-4 mb-3">List of User</h3>
+
+  <a class="btn btn-warning" href="/user/new">Create New</a><br><br>
+  <ul>
+  {{#each users}}
+    <li>
+      <h6>{{ name }}</h6>
+      <a class="badge badge-primary" href="/user/{{id}}">Detail</a>
+      <a class="badge badge-success mx-2" href="/user/{{id}}/update">Edit</a>
+      <a class="badge badge-danger" href="/user/{{id}}/delete">Delete</a>
+    </li>
+  {{/each}}
+</ul>
+
+{{/contentFor}}

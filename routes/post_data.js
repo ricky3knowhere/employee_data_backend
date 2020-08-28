@@ -1,7 +1,7 @@
 const models = require('../models')
 const session = require('express-session')
-// const User = models.user
-// const bcrypt = require('bcrypt')
+const User = models.user
+const bcrypt = require('bcrypt')
 
 
 const post_data = async (req,res) => {
@@ -18,40 +18,41 @@ const post_data = async (req,res) => {
 
   const result = schema.validate(req.body, options)
   const { error,value } = result
-  const keys = Object.keys(value)
-  const data = keys.map((k) => ({ name : k, value : value[k] }))
- 
+
+  const data = Object.fromEntries(
+    Object
+    .entries(value)
+    .map(([key, val]) => [key, {value: val}])
+  )
+  
+  
   if(error){
-    error.details.forEach(val => {
-      const key = val.context.key
-      const errorMessage = val.message
-      const processedValue = val.context.value
-      const _value = error._original[key]
-      data.forEach((d, i) => {
-        if(d.name === key){
-          data[i] = {
-            name : d.name,
-            value : processedValue,
-            error : errorMessage,
-            _value: _value
+    const dataError = error.details
+      .reduce(
+        (acc, curr) => {
+          acc[curr.context.key] = {
+            value: curr.context.value,
+            _value: error._original[curr.context.key],
+            error: curr.message
           }
-        }
-      })
-    })
-  }
+          return acc
+        },
+        {}
+      )
 
-  const reduced = data.reduce((acc, cv) => {
-    acc[cv.name] = cv
-    return acc
-  }, {})
-
-  if(error){
-    req.session.data = reduced
-    req.session.save(
-      () => res.redirect('/user/new')
-    )
+      Object.assign(data, dataError)
+      req.session.data = data
+      req.session.save(
+        () => res.redirect('/user/new')
+      )
   }else {
-    
+    const {password} = req.body
+    const data = req.body
+    data.password = bcrypt.hashSync(password, 10)
+
+    const user = await User.create(data)
+    res.redirect('./'+ user.id)
+    // res.send({data, error, value})
   }
 }
 
